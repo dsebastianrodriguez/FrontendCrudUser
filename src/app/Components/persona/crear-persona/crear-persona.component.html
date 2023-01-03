@@ -1,0 +1,131 @@
+<div class="container rounded shadow mt-7">
+    <br>
+    <div class="form-group mb-2">
+        <label class="form-check-label text-muted">
+            Los datos marcados con un asterisco
+            <strong class="text-danger">(*)</strong> son requeridos</label>
+    </div>
+    <br>
+    <div class="d-flex justify-content-between">
+        <h4>Registrar persona</h4>
+        <a href="#" routerLink="/persona" class="btn btn-dark">Atras</a>
+    </div>
+    <div class="form-row">
+        <form class="p-4 form" [formGroup]="form" (ngSubmit)="submit()">
+            <div class="form-row">
+                <div>
+                    <div class="col-6 mb-2">
+                        <label for="title">Nombres:</label>
+                        <small class="text-danger" title="requerido"> (*)</small>
+                        <input id="nombres" type="text" class="form-control" formControlName="nombres" [ngClass]="{
+                            'is-valid':
+                            nombres?.enabled &&
+                            (nombres?.touched || nombres?.dirty) &&
+                            nombres?.valid,
+                            'is-invalid':
+                            nombres?.enabled &&
+                            (nombres?.touched || nombres?.dirty) &&
+                            !nombres?.valid
+                        }">
+                    </div>
+                    <div class="text-danger" *ngIf="(nombres?.dirty || nombres?.touched) && !nombres?.valid">
+                        <span *ngIf="nombres?.hasError('required')">
+                            El campo es requerido.
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-6 mb-2">
+                        <label for="title">Apellidos:</label>
+                        <small class="text-danger" title="requerido"> (*)</small>
+                        <input id="apellidos" type="text" class="form-control" formControlName="apellidos" [ngClass]="{
+                            'is-valid':
+                            apellidos?.enabled &&                            
+                            (apellidos?.touched || apellidos?.dirty) &&
+                            apellidos?.valid,
+                            'is-invalid':
+                            apellidos?.enabled &&
+                            (apellidos?.touched || apellidos?.dirty) &&
+                            !apellidos?.valid
+                        }">
+                    </div>
+                    <div class="text-danger" *ngIf="(apellidos?.dirty || apellidos?.touched) && !apellidos?.valid">
+                        <span *ngIf="apellidos?.hasError('required')">
+                            El campo es requerido.
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-6 mb-2">
+                        <label for="TipoPersona" class="font-weight-bold">Tipo de documento</label>
+                        <small class="text-danger" title="requerido"> (*)</small>
+                        <ng-select [items]="listaTipoDocumento" bindLabel="tipo_Identificacion" bindValue="id"
+                            placeholder="Seleccionar..."  formControlName="id_Tipo_Identificacion" [ngClass]="{
+                            'is-valid':
+                            TipoDocumento?.enabled &&
+                            (TipoDocumento?.touched || TipoDocumento?.dirty) &&
+                            TipoDocumento?.valid,
+                            'is-invalid':
+                            TipoDocumento?.enabled &&
+                            (TipoDocumento?.touched || TipoDocumento?.dirty) &&
+                            !TipoDocumento?.valid
+                        }">
+                        </ng-select>
+                        <div class="text-danger"
+                        *ngIf="(TipoDocumento?.dirty || TipoDocumento?.touched) && !TipoDocumento?.valid">
+                        <span *ngIf="TipoDocumento?.hasError('required')">
+                          El campo es requerido.
+                        </span>
+                      </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="col-6 mb-2">
+                        <label for="title">Numero documento:</label>
+                        <small class="text-danger" title="requerido"> (*)</small>
+                        <input id="numero_Identificacion" type="number" class="form-control"
+                            formControlName="numero_Identificacion" [ngClass]="{
+                            'is-valid':
+                            numero_Identificacion?.enabled &&
+                            (numero_Identificacion?.touched || numero_Identificacion?.dirty) &&
+                            numero_Identificacion?.valid,
+                            'is-invalid':
+                            numero_Identificacion?.enabled &&
+                            (numero_Identificacion?.touched || numero_Identificacion?.dirty) &&
+                            !numero_Identificacion?.valid
+                        }">
+                    </div>
+                    <div class="text-danger"
+                        *ngIf="(numero_Identificacion?.dirty || numero_Identificacion?.touched) && !numero_Identificacion?.valid">
+                        <span *ngIf="numero_Identificacion?.hasError('required')">
+                            El campo es requerido.
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-6 mb-2">
+                        <label for="email">Correo electronico:</label>
+                        <small class="text-danger" title="requerido"> (*)</small>
+                        <input id="email" type="email" class="form-control" formControlName="email" [ngClass]="{
+                            'is-valid':
+                            email?.enabled &&
+                            (email?.touched || email?.dirty) &&
+                            email?.valid,
+                            'is-invalid':
+                            email?.enabled &&
+                            (email?.touched || email?.dirty) &&
+                            !email?.valid
+                        }">
+                    </div>
+                    <div class="text-danger" *ngIf="(email?.dirty || email?.touched) && !email?.valid">
+                        <span *ngIf="email?.hasError('required')">
+                            El campo es requerido.
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-dark" type="submit" [disabled]="!form.valid">Agregar</button>
+        </form>
+    </div>
+</div>
